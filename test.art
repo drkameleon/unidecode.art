@@ -1,4 +1,4 @@
-import {main.art}!
+import {unidecode.art}!
 
 strings: [
     "this is a test string"
