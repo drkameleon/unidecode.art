@@ -1,16 +1,5 @@
-<h1 align="center" style="display:inline-flex">
-    <img 
-        alt="Arturo logo" 
-        width="30" 
-        align="left"
-        src="https://github.com/arturo-lang/arturo/raw/master/docs/images/logo.png#gh-light-mode-only"
-    />
-    <img 
-        alt="Arturo logo" 
-        width="30" 
-        align="left"
-        src="https://github.com/arturo-lang/arturo/raw/master/docs/images/logo-lightgray.png#gh-dark-mode-only" 
-    /> Unidecode
+<h1 align="center">
+    Unidecode
 </h1>
 
 <p align="center">
