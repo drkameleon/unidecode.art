@@ -1,0 +1,16 @@
+import {main.art}!
+
+strings: [
+    "this is a test string"
+    "我 吃了 一个 苹果。"
+    "καλημέρα!"
+    "Erwin Schrödinger"
+    "Lise et José, lisons ensemble et sans hésiter les usages des honnêtes indigènes de Zanzibar."
+    "доброе утро!"
+    "angle = 30°"
+    "═╡ Assertion Error ╞═══════"
+]
+
+loop strings 's [
+    print [s "=>" unidecode s]
+]
