@@ -1,5 +1,5 @@
 <h1 align="center">
-    <i>Unidecode/i>
+    <i>Unidecode</i>
 </h1>
 
 <p align="center">
