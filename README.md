@@ -1,10 +1,23 @@
-<h1 align="center">
-    Unidecode
+<h1 align="center" style="display:inline-flex">
+    <img 
+        alt="Arturo logo" 
+        width="30" 
+        align="left"
+        src="https://github.com/arturo-lang/arturo/raw/master/docs/images/logo.png#gh-light-mode-only"
+    />
+    <img 
+        alt="Arturo logo" 
+        width="30" 
+        align="left"
+        src="https://github.com/arturo-lang/arturo/raw/master/docs/images/logo-lightgray.png#gh-dark-mode-only" 
+    /> Unidecode
 </h1>
 
 <p align="center">
-    <i>Unicode -> ASCII converter package for Arturo</i>
+     <i>Unicode -> ASCII converter package for  Arturo</i> 
 </p>
+
+<hr/>
 
 ### What does this package do?
 
@@ -27,6 +40,8 @@ print unidecode "доброе утро!"
 
 > [!IMPORTANT]
 > The package cannot possibly guarantee that the output will be "accurate", not is it 100% easy to say what would be accurate in every possible case - it's an *approximate* Unicode -> ASCII transformation. So, if you need a better solution for your specific needs, you might be better of writing a custom solution yourself!
+
+<hr/>
 
 ### License
 
