@@ -1,9 +1,9 @@
 <h1 align="center">
-    <i>Unidecode</i>
+    Unidecode
 </h1>
 
 <p align="center">
-    Unicode -> ASCII converter package for Arturo
+    <i>Unicode -> ASCII converter package for Arturo</i>
 </p>
 
 ### What does this package do?
