@@ -1,2 +1,2 @@
-entry: {unidecode}
+entry: {src/unidecode}
 requires: [> 0.9.83]
