@@ -1,0 +1,39 @@
+;========================================
+; Unidecode
+; Package for Arturo
+;
+; (c) 2024 Dr.Kameleon
+;          aka Yanis Zafirópulos
+;========================================
+; MIT License
+;========================================
+
+export module [
+    ;---------------------------
+    ; Initialization
+    ;---------------------------
+
+    init: method [][
+        \unicodeData: read.lines ./"data.txt"
+        \unicodeDataSize: size \unicodeData
+    ]
+
+    ;---------------------------
+    ; Public methods
+    ;---------------------------
+
+    unidecode: method.public [str][
+        result: ""
+        loop str 'ch [
+            c: to :integer ch
+            switch c =< 127 [
+                'result ++ to :char c
+            ][
+                if c < \unicodeDataSize [
+                    'result ++ \unicodeData\[c - 128]
+                ]
+            ]
+        ]
+        result
+    ]
+]
