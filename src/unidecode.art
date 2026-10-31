@@ -23,6 +23,8 @@ export module [
     ;---------------------------
 
     unidecode: method.public [str][
+        if empty? str -> return ""
+
         result: ""
         loop str 'ch [
             c: to :integer ch
