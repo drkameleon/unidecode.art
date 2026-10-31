@@ -30,6 +30,16 @@ print unidecode "доброе утро!"
 > [!IMPORTANT]
 > The package cannot possibly guarantee that the output will be "accurate", nor is it 100% easy to say what would be accurate in every possible case - it's an *approximate* Unicode -> ASCII transformation. So, if you need a better solution for your specific needs, you might be better off writing a custom solution yourself!
 
+### Limitations
+
+- Only characters within the Basic Multilingual Plane (U+0000 to U+FFFF) are supported - anything beyond that (e.g. emoji, rare CJK ideographs, mathematical alphanumeric symbols, etc) is silently removed
+- Chinese, Japanese & Korean ideographs are transliterated one-by-one, with each one followed by a space - so expect double and trailing spaces in the output:
+  ```arturo
+  print unidecode "我 吃了 一个 苹果。"
+  ; will print:
+  ; Wo  Chi Liao  Yi Ge  Ping Guo . 
+  ```
+
 <hr/>
 
 ### License
