@@ -17,7 +17,7 @@
 Let's say you have a Unicode string, with different characters, in different languages, e.g. characters with accents, in cyrillic, Mandarin Chinese, etc and - for whatever reason - want to have a *close approximation* to what it would be like using only ASCII characters, then this package is for you.
 
 > [!TIP]
-> The package has been based on [Nim's implementation](https://nim-lang.org/docs/unidecode.html#unidecode%2Cstring), of the same name - which in turn has been based on Python's [Unidecode](https://pypi.org/project/Unidecode/) module by Tomaž Šolc, itself a port of Perl's [Text::Unidecode](https://metacpan.org/pod/Text::Unidecode) by Sean M. Burke - and that's where the transliteration data (`src/data.txt`) comes from
+> The package has been based on [Nim's implementation](https://nim-lang.org/docs/unidecode.html#unidecode%2Cstring), of the same name - which in turn has been based on Python's [Unidecode](https://pypi.org/project/Unidecode/) module by Tomaž Šolc, itself a port of Perl's [Text::Unidecode](https://metacpan.org/pod/Text::Unidecode) by Sean M. Burke - and that's where the transliteration data (`src/data.txt`) comes from.
 
 ### How do I use it?
 
