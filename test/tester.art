@@ -1,0 +1,65 @@
+import {unitt}!
+import ./"../src/unidecode.art"!
+
+suite "ASCII input" [
+    test "is left untouched" [
+        assert -> "this is a test string" = unidecode "this is a test string"
+        assert -> "angle = 30, x < y & z > w!" = unidecode "angle = 30, x < y & z > w!"
+        assert -> "\t\n" = unidecode "\t\n"
+    ]
+]
+
+suite "Latin" [
+    test "accented characters" [
+        assert -> "Erwin Schrodinger" = unidecode "Erwin Schrödinger"
+        assert -> "Lise et Jose, sans hesiter" = unidecode "Lise et José, sans hésiter"
+        assert -> "Francais" = unidecode "Français"
+        assert -> "Malaga" = unidecode "Málaga"
+    ]
+
+    test "ligatures & special letters" [
+        assert -> "ss" = unidecode "ß"
+        assert -> "AE ae" = unidecode "Æ æ"
+        assert -> "OE oe" = unidecode "Œ œ"
+        assert -> "Th th" = unidecode "Þ þ"
+    ]
+]
+
+suite "Other scripts" [
+    test "greek" [
+        assert -> "kalemera!" = unidecode "καλημέρα!"
+    ]
+
+    test "cyrillic" [
+        assert -> "dobroe utro!" = unidecode "доброе утро!"
+    ]
+
+    test "chinese" [
+        assert -> "Wo  Chi Liao  Yi Ge  Ping Guo . " = unidecode "我 吃了 一个 苹果。"
+    ]
+]
+
+suite "Symbols" [
+    test "common symbols" [
+        assert -> "angle = 30deg" = unidecode "angle = 30°"
+        assert -> "(c) (r)" = unidecode "© ®"
+        assert -> " 1/2 " = unidecode "½"
+    ]
+
+    test "box drawing" [
+        assert -> "-+ Assertion Error +-------" = unidecode "═╡ Assertion Error ╞═══════"
+    ]
+]
+
+suite "Edge cases" [
+    test "C1 control characters are removed" [
+        assert -> "ab" = unidecode ~"a|to :char 128|b"
+        assert -> "ab" = unidecode ~"a|to :char 159|b"
+    ]
+
+    test "characters outside the BMP are removed" [
+        assert -> "ab" = unidecode "a😀b"
+    ]
+]
+
+unitt\report 'full

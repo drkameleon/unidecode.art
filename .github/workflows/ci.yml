@@ -1,0 +1,37 @@
+name: "Test"
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '*.md'
+      - 'LICENSE'
+      - '.github/FUNDING.yml'
+  pull_request:
+    paths-ignore:
+      - '*.md'
+      - 'LICENSE'
+      - '.github/FUNDING.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v7
+
+      - name: "Setup Arturo"
+        uses: arturo-lang/setup-arturo@v2
+        with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Run unit tests"
+        run: |
+          arturo -v
+          arturo test/tester.art
