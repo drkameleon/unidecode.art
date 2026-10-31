@@ -40,7 +40,35 @@ suite "Other scripts" [
     ]
 
     test "chinese" [
-        assert -> "Wo  Chi Liao  Yi Ge  Ping Guo . " = unidecode "我 吃了 一个 苹果。"
+        assert -> "Wo Chi Liao Yi Ge Ping Guo." = unidecode "我 吃了 一个 苹果。"
+    ]
+]
+
+suite "Spacing" [
+    test "no trailing spaces" [
+        assert -> "Bei Jing" = unidecode "北京"
+        assert -> "Wo Men Qu Bei Jing Ba!" = unidecode "我们去北京吧！"
+    ]
+
+    test "no double spaces" [
+        assert -> "Bei Jing, Shang Hai" = unidecode "北京, 上海"
+        assert -> "Jie Ge:100 Yuan" = unidecode "价格：100元"
+    ]
+
+    test "mixed with latin" [
+        assert -> "Wo love Ni" = unidecode "我love你"
+        assert -> "A Bei B" = unidecode "A北B"
+    ]
+
+    test "mixed with kana & hangul" [
+        assert -> "Dong Jing tawa" = unidecode "東京タワー"
+        assert -> "Ri Ben Yu notekisuto" = unidecode "日本語のテキスト"
+        assert -> "hangugeo" = unidecode "한국어"
+    ]
+
+    test "original spacing is preserved" [
+        assert -> "a  b" = unidecode "a  b"
+        assert -> " Bei Jing " = unidecode " 北京 "
     ]
 ]
 
@@ -48,7 +76,8 @@ suite "Symbols" [
     test "common symbols" [
         assert -> "angle = 30deg" = unidecode "angle = 30°"
         assert -> "(c) (r)" = unidecode "© ®"
-        assert -> " 1/2 " = unidecode "½"
+        assert -> " 1/2" = unidecode "½"
+        assert -> "1 1/4" = unidecode "1¼"
     ]
 
     test "box drawing" [

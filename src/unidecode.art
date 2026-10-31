@@ -26,14 +26,31 @@ export module [
         if empty? str -> return ""
 
         result: ""
+        pending: false              ; previous chunk was a "spaced" one
+        endsAlnum: false            ; previous chunk ended with a letter/digit
+
         loop str 'ch [
             c: to :integer ch
-            switch c =< 127 [
-                'result ++ ch
-            ][
-                if (c - 128) < \unicodeDataSize [
-                    'result ++ \unicodeData\[c - 128]
-                ]
+            chunk: ""
+            switch c =< 127 -> chunk: to :string ch [
+                if (c - 128) < \unicodeDataSize ->
+                    chunk: \unicodeData\[c - 128]
+            ]
+            unless empty? chunk [
+                ; Han characters (and some punctuation) come with
+                ; a trailing space, e.g. "Wo " - we drop it, and only
+                ; add a space where actually needed, that is: between
+                ; a transliterated character & a following letter/digit
+                spaced?: and? [1 < size chunk][suffix? chunk " "]
+                if spaced? -> chunk: chop chunk
+
+                if and? [match? chunk {/^[A-Za-z0-9]/}][
+                    or? [pending][and? [spaced?][endsAlnum]]
+                ] -> 'result ++ " "
+
+                'result ++ chunk
+                pending: spaced?
+                endsAlnum: match? chunk {/[A-Za-z0-9]$/}
             ]
         ]
         result

@@ -4,6 +4,10 @@
 
 <p align="center">
      <i>Unicode -> ASCII converter package for Arturo</i> 
+     <br><br>
+     <img src="https://img.shields.io/github/license/drkameleon/unidecode.art?style=for-the-badge">
+    <a href="https://github.com/arturo-lang/arturo" style="text-decoration: none; display: inline-block;"><img src="https://img.shields.io/badge/language-Arturo-6A156B.svg?style=for-the-badge" alt="Language"/></a>
+    <a href="https://github.com/drkameleon/unidecode.art/actions/workflows/ci.yml" style="text-decoration: none; display: inline-block;"><img src="https://img.shields.io/github/actions/workflow/status/drkameleon/unidecode.art/ci.yml?branch=main&label=tests&style=for-the-badge" alt="Tests"/></a>
 </p>
 
 <hr/>
@@ -13,7 +17,7 @@
 Let's say you have a Unicode string, with different characters, in different languages, e.g. characters with accents, in cyrillic, Mandarin Chinese, etc and - for whatever reason - want to have a *close approximation* to what it would be like using only ASCII characters, then this package is for you.
 
 > [!TIP]
-> The package has been based on [Nim's implementation](https://nim-lang.org/docs/unidecode.html#unidecode%2Cstring), of the same name - which in turn has been based on the Python's Unidecode module by Tomaz Solc.
+> The package has been based on [Nim's implementation](https://nim-lang.org/docs/unidecode.html#unidecode%2Cstring), of the same name - which in turn has been based on Python's [Unidecode](https://pypi.org/project/Unidecode/) module by Tomaž Šolc, itself a port of Perl's [Text::Unidecode](https://metacpan.org/pod/Text::Unidecode) by Sean M. Burke - and that's where the transliteration data (`src/data.txt`) comes from. The only notable difference is that transliterated Han characters are separated by single spaces - with no trailing or double spaces in the output (e.g. `北京` becomes `Bei Jing`, not `Bei Jing `).
 
 ### How do I use it?
 
@@ -29,6 +33,11 @@ print unidecode "доброе утро!"
 
 > [!IMPORTANT]
 > The package cannot possibly guarantee that the output will be "accurate", nor is it 100% easy to say what would be accurate in every possible case - it's an *approximate* Unicode -> ASCII transformation. So, if you need a better solution for your specific needs, you might be better off writing a custom solution yourself!
+
+### Limitations
+
+- Only characters within the Basic Multilingual Plane (U+0000 to U+FFFF) are supported - anything beyond that (e.g. emoji, rare CJK ideographs, mathematical alphanumeric symbols, etc) is silently removed
+- Han characters are always transliterated using their Mandarin reading - regardless of whether they are Chinese hanzi, Japanese kanji or Korean hanja (e.g. `日本` becomes `Ri Ben`, not `Nihon`)
 
 <hr/>
 
@@ -55,3 +64,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+The transliteration data (`src/data.txt`) has been derived from Nim's `unidecode`
+module, itself based on Python's Unidecode by Tomaž Šolc and Perl's
+Text::Unidecode by Sean M. Burke.

@@ -1,4 +1,4 @@
-import "."!
+import "unidecode"!
 
 strings: [
     "this is a test string"
