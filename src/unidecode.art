@@ -27,9 +27,9 @@ export module [
         loop str 'ch [
             c: to :integer ch
             switch c =< 127 [
-                'result ++ to :char c
+                'result ++ ch
             ][
-                if c < \unicodeDataSize [
+                if (c - 128) < \unicodeDataSize [
                     'result ++ \unicodeData\[c - 128]
                 ]
             ]
