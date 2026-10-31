@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-     <i>Unicode -> ASCII converter package for  Arturo</i> 
+     <i>Unicode -> ASCII converter package for Arturo</i> 
 </p>
 
 <hr/>
@@ -28,7 +28,7 @@ print unidecode "доброе утро!"
 ```
 
 > [!IMPORTANT]
-> The package cannot possibly guarantee that the output will be "accurate", not is it 100% easy to say what would be accurate in every possible case - it's an *approximate* Unicode -> ASCII transformation. So, if you need a better solution for your specific needs, you might be better of writing a custom solution yourself!
+> The package cannot possibly guarantee that the output will be "accurate", nor is it 100% easy to say what would be accurate in every possible case - it's an *approximate* Unicode -> ASCII transformation. So, if you need a better solution for your specific needs, you might be better off writing a custom solution yourself!
 
 <hr/>
 
